@@ -13,20 +13,16 @@
    [:div
     [ui/app-bar
      {:title "Title"
-      :style {:paddingLeft (if (:show-drawer @state)
-                             270
-                             30)}
+      :style {:paddingLeft (if (:show-drawer @state) 270 30)}
       :icon-element-left (r/as-element
-                          [ui/icon-button
-                           {:on-click #(swap! state update-in [:show-drawer] not)}
+                          [ui/icon-button {:on-click #(swap! state update-in [:show-drawer] not)}
                            (ic/navigation-menu)])}]
-    [ui/drawer
-     {:docked true
-      :open (:show-drawer @state)}
+    [ui/drawer {:docked true
+                :open (:show-drawer @state)}
      [:div "Admin"]
      [:div "Sample"]]]])
 
 (defn home-page []
-  (let [state (r/atom {:show-drawer false})]
+  (let [state (r/atom {:show-drawer true})]
     (fn []
       [:div [app-bar state]])))
